@@ -38,7 +38,7 @@ layout: default
 	</p>
 	<p>
 		{% include date.svg %}
-		<span>{{ page.date }}</span>
+		<span>{{ page.date | date_to_string }}</span>
 	</p>
 </div>
 

@@ -12,4 +12,4 @@ date: 24-03-2022
 1337 is the first to provide IT training in Morocco, completely free of charge, open and accessible to anyone between the age of 18 & 30, no need for an IT degree, or of having undergone extensive IT training, **JUST BE CREATIVE**.
 **1337** is our home, the place where we learn everything, not only how to code, we learn how to be friendly with everyone, how to help tour peers, how to find the information tou need, how to share what you found...
 I have never seen a place beautifull than my second home "**1337**".
-### we are the best
+### we are the best!
