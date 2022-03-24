@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ali Fertah
-tags: 1337
+tags: leet 1337
 category: school
 date: 24-03-2022
 ---
