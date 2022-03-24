@@ -33,7 +33,7 @@ p code {
 }
 p img{
 	height:auto;
-	width: 100%;
+	width: auto;
 }
 ul{
 	list-style:none;
