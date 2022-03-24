@@ -27,7 +27,10 @@ p code {
 	padding: 0 10px;
 	border-radius: 2px;
 }
-
+p img{
+	height:500px;
+	width: 100%;
+}
 ul{
 	list-style:none;
 }
