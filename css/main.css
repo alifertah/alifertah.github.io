@@ -29,6 +29,7 @@ article h3 {
 p code {
 	padding: 0 10px;
 	border-radius: 2px;
+	font-family: 'IBM Plex Sans Thai', sans-serif;
 }
 p img{
 	height:500px;
