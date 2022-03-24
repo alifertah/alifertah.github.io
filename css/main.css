@@ -32,8 +32,8 @@ p code {
 	font-family: 'IBM Plex Sans Thai', sans-serif;
 }
 p img{
-	height:500px;
-	width: 100%;
+	height:auto;
+	width: auto;
 }
 ul{
 	list-style:none;
