@@ -1,4 +1,5 @@
 @import "tango.css";
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300&display=swap');
 
 body {
 	color: #444;
@@ -8,6 +9,7 @@ body {
 	overflow-x:hidden;
 	background-color: #252a34;
 	color: #d0d0d0;
+	font-family: 'IBM Plex Sans Thai', sans-serif;
 }
 
 h1, h2, h3{
