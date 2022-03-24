@@ -1,0 +1,44 @@
+---
+layout: default
+---
+<div class="post-meta muted">
+	<a href="/">Home</a> | 
+	{% if page.category %}
+	<a href="/category/{{page.category}}">{{ page.category }}</a> | 
+	{% endif %}
+	<span>{{ page.date | date_to_string }}</span>
+	{% if page.updated %}
+	<span> | last update: {{ page.date | date_to_string }}</span>
+	{% endif %}
+</div>
+<h1 class="title">{{ page.title }}</h1>
+
+<article class="post">
+  {{ content }}
+</article>
+
+<p>
+	By : 
+	{% if page.author%}
+		{{page.author}}
+	{% else %}
+		Ismail Ait Bella
+	{% endif%}
+</p>
+<div class="tags">
+	<p>
+		{% include tag.svg %}
+		{% for tag in page.tags %}
+			<span class="tag"><a href="/tags/{{ tag }}">{{tag}}</a></span>
+		{%endfor%}
+	</p>
+	<p>
+		{% include word.svg %}
+		<span >{{ content | number_of_words }} word for you not SEO</span>
+	</p>
+	<p>
+		{% include date.svg %}
+		<span>{{ page.date }}</span>
+	</p>
+</div>
+

@@ -1,0 +1,17 @@
+---
+layout: default
+title: Ali Fertah
+---
+<div class="blurb">
+	<div class="post-meta muted flex">
+		<span>Ali Fertah | 1337 student</span>
+	</div>
+	<ul class="posts"> 
+		{% for post in site.posts %}
+			<li>
+				<a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>  
+				« <span>{{ post.date | date_to_string }}</span> 
+			</li>
+		{% endfor %}
+	</ul>
+</div>

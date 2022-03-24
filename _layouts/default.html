@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title>{{ page.title }}</title>
+			<!-- link to main stylesheet -->
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<link rel="stylesheet" type="text/css" href="/css/main.css">
+			<link rel="stylesheet" type="text/css" href="/css/tango.css">
+			<link rel="preconnect" href="https://fonts.gstatic.com">
+			<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+		</head>
+		<body>
+			<div class="container">
+			
+			{{ content }}
+			
+			</div><!-- /.container -->
+			<footer class="container flex">
+				<div>Boring fast website</div>
+				<div class="spacer"></div>
+				{% if site.data.settings.social %}
+				<div id="social-media flex">
+				    {% for entry in site.data.settings.social %}
+					<a href="{{ entry.link }}" title="{{ entry.icon }}">{% include {{entry.icon}}.svg %}</a>
+				    {% endfor %}
+				</div>
+				{% endif %}
+
+			</footer>
+		</body>
+	</html>

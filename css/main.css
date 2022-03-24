@@ -1,0 +1,137 @@
+@import "tango.css";
+
+body {
+	/*color: #e0fbfc; */
+	color: #444;
+	line-height: 1.6;
+	font-size: 18px;
+	max-width:100wv;
+	overflow-x:hidden;
+}
+
+h1, h2, h3{
+	line-height: 1.8;
+}
+
+h2 {
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+article h3 {
+	padding: 0px 20px;
+}
+
+p code {
+	background-color: #e2daff;
+	padding: 0 10px;
+	border-radius: 2px;
+}
+
+ul{
+	list-style:none;
+}
+a{
+	color: #2d9dff;
+}
+
+blockquote {
+	background: aliceblue;
+	border-left: 3px solid #000;
+	padding: 5px 20px;
+}
+
+nav a{
+	color: white;
+}
+pre{
+	overflow:scroll;
+	color: #fff;
+}
+
+.logo{
+	font-family: 'Lobster', cursive;
+	font-size: 32px;
+}
+.tags{
+	border-top: 3px solid rgb(170, 177, 181);
+	display: inline-block;
+}
+.tags p{
+	margin:10px 0;
+}
+.tags *{
+	color: rgb(170, 177, 181);
+}
+.ftag {
+    background: #00000047;
+    padding: 5px;
+    text-decoration: none;
+    margin: 5px;
+    border-radius: 4px;
+}
+
+
+.title{
+	border-bottom:2px dashed #ddd;
+	padding-bottom:15px;
+
+}
+.menu span{
+	display:block;
+	margin: 3px;
+	height: 2.5px;
+	width:20px;
+	background:#fff;
+
+}
+
+.flex{
+	display:flex;
+	align-items:center;
+}
+
+.spacer{
+	flex-grow:1;
+}
+
+.center{
+	text-align:center;
+}
+
+.posts li{
+	padding: 10px 5px;
+	border-bottom: 1px dashed #bbb
+}
+
+.muted a{
+	color: rgb(170, 177, 181);
+	text-decoration: none;
+	font-weight: 700;
+}
+.muted {
+	color: rgb(170, 177, 181);
+	font-size: 75%;
+}
+.container{
+	width:800px;
+	max-width:95%;
+	margin: auto;
+}
+
+#archives *{
+
+	color: #ddd;
+}
+.category-item {
+    text-decoration: none;
+	color: #ddd;
+}
+footer{
+	margin-top:20px !important;
+}
+
+::selection {
+  background: #a1aab436;
+}
