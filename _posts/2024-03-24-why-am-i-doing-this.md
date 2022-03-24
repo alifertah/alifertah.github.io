@@ -1,8 +1,8 @@
 ---
 layout: post
-title: awful me
-tags: awful blog
-category: minimal
+title: Ali Fertah
+tags: 1337
+category: school
 date: 24-03-2022
 ---
 ![](/1337.jpeg)
