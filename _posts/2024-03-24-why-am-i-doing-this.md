@@ -7,7 +7,11 @@ date: 24-03-2022
 ---
 # welcome to my awesomen't blog
 ### I don't know what am I doing or where am I going with this.
-![this is my beautifull school](/1337.jpeg)
+![](/1337.jpeg)
 ## Qu'est-ce que le Lorem Ipsum?
 
-Le  ***Lorem Ipsum***  est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
+**1337** , or "leet", an informed language or code on the internet, in which standar letters are often replaced by numerals or special characters.
+1337 is the first to provide IT training in Morocco, completely free of charge, open and accessible to anyone between the age of 18 & 30, no need for an IT degree, or of having undergone extensive IT training, **JUST BE CREATIVE**.
+**1337** is our home, the place where we learn everything, not only how to code, we learn how to be friendly with everyone, how to help tour peers, how to find the information tou need, how to share what you found...
+I have never seen a place beautifull than my second home "**1337**".
+### we are the best
