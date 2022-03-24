@@ -5,10 +5,8 @@ tags: awful blog
 category: minimal
 date: 24-03-2022
 ---
-# welcome to my awesomen't blog
-### I don't know what am I doing or where am I going with this.
 ![](/1337.jpeg)
-## Qu'est-ce que le Lorem Ipsum?
+## 1337
 
 **1337** , or "leet", an informed language or code on the internet, in which standar letters are often replaced by numerals or special characters.
 1337 is the first to provide IT training in Morocco, completely free of charge, open and accessible to anyone between the age of 18 & 30, no need for an IT degree, or of having undergone extensive IT training, **JUST BE CREATIVE**.
