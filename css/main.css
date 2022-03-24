@@ -1,13 +1,12 @@
 @import "tango.css";
 
 body {
-	/*color: #e0fbfc; */
 	color: #444;
 	line-height: 1.6;
 	font-size: 18px;
 	max-width:100wv;
 	overflow-x:hidden;
-	background-color: #233a3a;
+	background-color: #252a34;
 }
 
 h1, h2, h3{
