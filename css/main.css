@@ -32,7 +32,7 @@ p code {
 	font-family: 'IBM Plex Sans Thai', sans-serif;
 }
 p img{
-	height:500px;
+	height:auto;
 	width: 100%;
 }
 ul{
