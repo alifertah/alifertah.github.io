@@ -2,7 +2,10 @@
 layout: default
 ---
 <div class="post-meta muted">
-	<a href="/">Home</a>
+	<a href="/">Home</a> | 
+	{% if page.category %}
+	<a href="/category/{{page.category}}">{{ page.category }}</a> | 
+	{% endif %}
 	<span>{{ page.date | date_to_string }}</span>
 	{% if page.updated %}
 	<span> | last update: {{ page.date | date_to_string }}</span>

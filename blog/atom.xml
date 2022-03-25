@@ -8,7 +8,7 @@ layout: feed
 	<link href="http://alifertah.github.io/blog/atom.xml" rel="self"/>
 	<link href="http://alifertah.github.io/blog"/>
 	<updated>{{ site.time | date_to_xmlschema }}</updated>
-	<id>http://hankquinlan.github.io/blog</id>
+	<id>http://alifertah.github.io/blog</id>
 	<author>
 		<name>Ali Fertah</name>
 		<email>alfertah@student.1337.ma</email>
