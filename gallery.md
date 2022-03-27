@@ -82,5 +82,5 @@ permalink: /gallery/
         </div>
     </div>
 
-<script src="gallery/scripts.js" ></script>
-<link rel="stylesheet" href="gallery/styles.css">
+<script src="/gallery/scripts.js" ></script>
+<link rel="stylesheet" href="/gallery/styles.css">
