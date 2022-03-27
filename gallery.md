@@ -3,7 +3,10 @@ layout: default
 title: Gallery
 permalink: /gallery/
 ---
-
+<div class="post-meta muted flex">
+<span style="display: inline;"><a href="index.html">Home</a> |Ali Fertah | 1337 student | <a href="/gallery">Gallery</a></span>
+		
+</div>
   <div class="gallery" id="gallery">
         <div class="gallery-item">
             <div class="content"><img src="https://source.unsplash.com/random/?tech,care" alt=""></div>
