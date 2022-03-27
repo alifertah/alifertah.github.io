@@ -4,7 +4,7 @@ title: Gallery
 permalink: /gallery/
 ---
 <div class="post-meta muted flex">
-<span style="display: inline;"><a href="index.html">Home</a> |Ali Fertah | 1337 student | <a href="/gallery">Gallery</a></span>
+<span style="display: inline;"><a href="/index.html">Home</a> | Ali Fertah | 1337 student | <a href="/gallery">Gallery</a></span>
 		
 </div>
   <div class="gallery" id="gallery">
