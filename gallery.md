@@ -4,7 +4,6 @@ title: Gallery
 permalink: /gallery/
 ---
 
-
   <div class="gallery" id="gallery">
         <div class="gallery-item">
             <div class="content"><img src="https://source.unsplash.com/random/?tech,care" alt=""></div>
@@ -82,3 +81,6 @@ permalink: /gallery/
             <div class="content"><img src="https://source.unsplash.com/random/?tech,card" alt=""></div>
         </div>
     </div>
+
+<script src="gallery/scripts.js" ></script>
+<link rel="stylesheet" href="gallery/styles.css">
