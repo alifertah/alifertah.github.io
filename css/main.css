@@ -141,5 +141,6 @@ footer{
   background: #a1aab436;
 }
 code {
-	background-color: black;
+	background-color: #323232;
+    padding: 9px 0;
 }
