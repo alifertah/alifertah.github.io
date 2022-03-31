@@ -140,6 +140,6 @@ footer{
 ::selection {
   background: #a1aab436;
 }
-.highlight pre{
+.highlight .hilight{
 	background-color: black;
 }
