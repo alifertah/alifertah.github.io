@@ -1,8 +1,8 @@
 ---
-title: 1337 what we do the wrong way
+title: what we do the wrong way
 layout: post
 tags: 1337 git clang
-category: 1337
+category: school
 ---
 
 42 network have one the most effective cursus in the world. the people behind it are smart people
