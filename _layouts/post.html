@@ -27,14 +27,14 @@ layout: default
   {{ content }}
 </article>
 
-<p>
+<p style="display: inline-block;">
 	By : 
 	{% if page.author%}
 		{{page.author}}
 	{% else %}
 		Ali Fertah
 	{% endif%}
-	<div style="cursor: pointer;">{% include like.svg %}</div>
+	<div style="cursor: pointer; float: right;">{% include like.svg %}</div>
 </p>
 
 <div class="tags">
