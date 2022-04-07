@@ -4,6 +4,7 @@ title: what we do wrong
 tags: git
 category: school
 date: 30-03-2022
+author: Ismail Ait Bella
 ---
 
 42 network have one the most effective cursus in the world. the people behind it are smart people
