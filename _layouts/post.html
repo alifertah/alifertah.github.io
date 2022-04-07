@@ -10,6 +10,12 @@ layout: default
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 	<link rel="icon" href="../large_alfertah.ico">
+	<style>
+		div.active > svg path
+		{
+			fill: red !important;;
+		}
+	</style>
 </head>
 <div class="post-meta muted">
 	<a href="/">Home</a> | 
@@ -34,7 +40,7 @@ layout: default
 	{% else %}
 		Ali Fertah
 	{% endif%}
-	<div style="cursor: pointer; float: right;" onclick="">{% include like.svg %}</div>
+	<div style="cursor: pointer; float: right;" onclick="changestatus(this)">{% include like.svg %}</div>
 </p>
 
 <div class="tags">
@@ -55,4 +61,8 @@ layout: default
 </div>
 
 <script>
+	function changestatus()
+	{
+
+	}
 </script>
