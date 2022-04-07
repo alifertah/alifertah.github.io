@@ -40,8 +40,7 @@ layout: default
 	{% else %}
 		Ali Fertah
 	{% endif%}
-	<div class="active" style="cursor: pointer; float: right;" onclick="changestatus(this)">{% include like.svg %}</div>
-	<div class="" style="cursor: pointer; float: right;" onclick="changestatus(this)">{% include like.svg %}</div>
+	<div style="cursor: pointer; float: right;" onclick="changestatus(this)">{% include like.svg %}</div>
 </p>
 
 <div class="tags">
@@ -64,7 +63,10 @@ layout: default
 <script>
 	function changestatus($this)
 	{
-		console.log($this.classList.contains('active'));
-		
+		if ($this.classList.contains('active'))
+			$this.classList.remove("active")
+		else
+			$this.classList.add("active")
+
 	}
 </script>
