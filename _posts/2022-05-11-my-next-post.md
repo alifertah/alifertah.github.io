@@ -1,7 +1,10 @@
 ---
 layout: post
-tags:   idk
+tags: so_long
 date: 11-05-2022
 ---
 
-# 7h15 p057 w1l b3 4v41l4bl3 45 500n 45 p0551bl3
+# so long
+![](/blog/solong.png)
+
+### so long will help you improve your skills in the following areas: window management, event handling, colors, textures, and so forth.
