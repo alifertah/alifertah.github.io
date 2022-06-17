@@ -4,6 +4,7 @@ title: C programming
 tags: C programming IT
 category: C
 date: 17-06-2022
+author: Ali Fertah
 ---
 
 # Many of the C projects that exist today were started decades ago.
