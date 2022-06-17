@@ -53,6 +53,7 @@ Mac computers are also powered by C, since the OS X kernel is written mostly in 
 ## Mobile
 
 iOS, Android and Windows Phone kernels are also written in C. They are just mobile adaptations of existing Mac OS, Linux and Windows kernels. So smartphones you use every day are running on a C kernel.
+![](/blog/c_blogimgs/cblogimg1.png)
 
   
 
@@ -65,6 +66,7 @@ The world’s most popular databases, including Oracle Database, MySQL, MS SQL S
   
 
 Databases are used in all kind of systems: financial, government, media, entertainment, telecommunications, health, education, retail, social networks, web, and the like.
+![](/blog/c_blogimgs/cblogimg2.png)
 
   
 
@@ -119,7 +121,7 @@ All those devices are embedded systems. They are like small computers that have 
   
 
 Although the programming language used on embedded systems can vary from brand to brand, they are most commonly programmed in the C language, due to the language’s features of flexibility, efficiency, performance, and closeness to the hardware.
-
+![](/blog/c_blogimgs/cblogimg3.png)
   
 
 Embedded Systems are Often Written in C
@@ -341,6 +343,7 @@ We would rarely discuss (or think) about the assembly instructions that a portio
   
 
 Moreover, if you can’t stop and think that way about what you are doing, you may end up programming with some sort of superstition about how (magically) things are done.
+![](/blog/c_blogimgs/cblogimg4.png)
 
   
 
@@ -349,6 +352,7 @@ Think Like the Machine with C
 ## Work on Many Interesting C Projects
 
 Many interesting projects, from big database servers or operating system kernels, to small embedded applications you can even do at home for your personal satisfaction and fun, are done in C. There is no reason to stop doing things you may love for the single reason that you don’t know an old and small, but strong and time-proven programming language like C.
+![](/blog/c_blogimgs/cblogimg5.png)
 
   
 
