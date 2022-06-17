@@ -1,6 +1,6 @@
 ---
 layout: post
-title: After All These Years, the World is Still Powered by C Programming
+title: C programming
 tags: C programming IT
 category: C
 date: 17-06-2022
