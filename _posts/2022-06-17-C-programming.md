@@ -2,7 +2,6 @@
 layout: post
 title: C programming
 tags: C programming IT
-category: C
 date: 17-06-2022
 author: Ali Fertah
 ---
