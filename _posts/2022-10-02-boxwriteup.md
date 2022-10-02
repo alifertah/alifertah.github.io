@@ -14,8 +14,8 @@ here we r going to use the nmap scan
 we we found that there is an open port with ssh
 ## now we r going to see some basic things
 lets take a look at /robots.txt
-boom we found that there is a hidden file called secret
 ![](/blog/2.png)
+boom we found that there is a hidden file called secret
 ![](/blog/3.png)
 its obvious that its a base 64 encryption
 so we r going to encrypt it
@@ -38,7 +38,7 @@ let's take a look at the sus files
 ![](/blog/susfile.png)
 we see that file in /usr/bin/ called "bash" with its yellow color and we see that bash has some interesting permissions set
 the file is called bash so lets open the bash man and try to understand well
-![](/blog/-p.png)
+![](/blog/-pf.png)
 this "-p" could help us
 ### SUID
 Set owner User ID
