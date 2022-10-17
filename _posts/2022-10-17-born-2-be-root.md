@@ -20,29 +20,391 @@ The installation guide is at the end of the article.
 
 Login as root
 
-$ su -
-
-Install sudo
-
+```$ su -
 $ apt-get update -y  
 $ apt-get upgrade -y  
 $ apt install sudo
-
-Adding user in sudo group
-
 $ su -  
 $ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+Install sudo
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+Adding user in sudo group
+
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 Check if user is in sudo group
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
 $ getent group sudo
-
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 Give privilege as a su.
 
 Open sudoers file:
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
 $ sudo visudo
-
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 Add this line in file:
 
 your_username    ALL=(ALL) ALL
@@ -51,45 +413,697 @@ your_username    ALL=(ALL) ALL
 
 Installing git
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
 $ apt-get update -y  
 $ apt-get upgrade -y  
 $ apt-get install git -y
-
-Check git version
-
 $ git --version
-
-Installing wget  _(wget is a free and open source tool for downloading files from web repositories.)_
-
 $ sudo apt-get install wget
-
-Installing Vim
-
 $ sudo apt-get install vim
-
-Installing Oh my zsh (because it is easier to use)
-
 $ sudo apt-get install zsh  
 $ zsh --version  
 $ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
-
-## 2.3. Installing SSH and configuring SSH service
-
 $ sudo apt-get update  
 $ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+Check git version
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+Installing wget  _(wget is a free and open source tool for downloading files from web repositories.)_
+
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+Installing Vim
+
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+Installing Oh my zsh (because it is easier to use)
+
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+## 2.3. Installing SSH and configuring SSH service
+
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 Check the SSH server status
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
 $ sudo systemctl status ssh
-
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 Restart the SSH service
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
 $ service ssh restart
-
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 Changing default port (22) to 4242
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
 $ sudo nano _/etc/ssh/sshd_config_
-
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 Edit the file change the line #Port22 to Port 4242
 
 _Find thid line:_
@@ -102,39 +1116,622 @@ Port 4242
 
 Check if port settings got right
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
 $ sudo grep Port /etc/ssh/sshd_config
-
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 Restart the SSH service
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
 $ sudo service ssh restart
-
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 ## 2.4. Installing and configuring UFW (Uncomplicated Firewall)
 
 Install UFW
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
 $ apt-get install ufw
-
-Enable
-
 $ sudo ufw enable
-
-Check the status
-
 $ sudo ufw status numbered
-
-Configure the rules
-
 $ sudo ufw allow ssh
-
-Configure the port rules
-
 $ sudo ufw allow 4242
-
-Delete the new rule: (This is for when you defend your Born2beroot)
-
 $ sudo ufw status numbered  
 $ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+Enable
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+Check the status
+
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+Configure the rules
+
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+Configure the port rules
+
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+Delete the new rule: (This is for when you defend your Born2beroot)
+
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 ## 2.5. Connecting SSH server
 
 Add forward rule for VirtualBox
@@ -151,20 +1748,312 @@ Add forward rule for VirtualBox
 
 4. Restart SSH server (go to the your VM machine)
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
 $ sudo systemctl restart ssh
-
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 5. Check ssh status:
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
 $ sudo service sshd status
-
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 6. From host side from iTerm2 or Terminal enter as shown below:
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
 $ ssh your_username@127.0.0.1 -p 4242
-
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 7. Quit the connection:
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
 $ exit
-
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 ## 2.6. Set password policy ([source](https://ostechnix.com/how-to-set-password-policies-in-linux/))
 
 This setting enforces how many classes, i.e upper-case, lower-case, and other characters, should be in a password, also the length of the password.
@@ -187,12 +2076,158 @@ This setting enforces how many classes, i.e upper-case, lower-case, and other ch
 
 Installing password quality checking library (libpam-pwquality):
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
 $ sudo apt-get install libpam-pwquality
-
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 Change the length
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
 $ sudo nano /etc/pam.d/common-password
-
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 Find the following line:
 
 password [success=2 default=ignore] pam_unix.so obscure sha512
@@ -219,8 +2254,81 @@ It will look like this:
 
 Password expiration:
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
 $ sudo nano /etc/login.defs
-
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 Find this part
 
 PASS_MAX_DAYS 9999  
@@ -235,51 +2343,778 @@ PASS_WARN_AGE 7
 
 Reboot the change affects:
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
 $ sudo reboot
-
-## 2.7. Create group
-
 $ sudo groupadd user42  
 $ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+## 2.7. Create group
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 Check if group created:
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
 $ getent group
-
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 ## 2.8. Create user and assign into group
 
 Check the all local users:
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
 $ cut -d: -f1 /etc/passwd
-
-Create the user
-
 $ sudo adduser _new_username_
-
-Assign an user into “evaluating” group (This is for when you defend)
-
 $ sudo usermod -aG user42 your_username  
 $ sudo usermod -aG evaluating your_new_username
-
-Check if the user is in group
-
 $ getent group user42  
 $ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+Create the user
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+Assign an user into “evaluating” group (This is for when you defend)
+
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+Check if the user is in group
+
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 Check which groups user account belongs:
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
 $ groups
-
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 Check if password rules working in users:
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
 $ chage -l your_new_username
-
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 ## 2.9. Configuring sudoers group
 
 Go to file:
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
 $ sudo nano /etc/sudoers
-
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 Add following for authentication using sudo has to be limited to 3 attempts in the event of an incorrect password:
 
 Defaults     secure_path="..."  
@@ -314,37 +3149,63 @@ Now my /etc/sudoers file looks like this
 
 Check current hostname
 
-$ hostnamectl
-
-Change the hostname
-
-$ hostnamectl set-hostname new_hostname
-
-Change /etc/hosts file
-
-$ sudo nano /etc/hosts
-
-Change old_hostname with new_hostname:
-
-127.0.0.1       localhost  
-127.0.0.1       new_hostname
-
-Reboot and check the change
-
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
 $ sudo reboot
-
-## 2.11. Crontab configuration
-
-> “A  **crontab**  file contains instructions for the cron(8) daemon in the following simplified manner: “run this command at this time on this date”
-
-1.  Install the netstat tools
-
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
 $ sudo apt-get update -y  
 $ sudo apt-get install -y net-tools
-
-1.  Place monitoring.sh in /usr/local/bin/
-
-#!/bin/bash  
 wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
 $'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
 $'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
@@ -357,13 +3218,486 @@ $'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \
 $'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
 $'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
 $'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+Change the hostname
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+Change /etc/hosts file
+
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+Change old_hostname with new_hostname:
+
+127.0.0.1       localhost  
+127.0.0.1       new_hostname
+
+Reboot and check the change
+
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+## 2.11. Crontab configuration
+
+> “A  **crontab**  file contains instructions for the cron(8) daemon in the following simplified manner: “run this command at this time on this date”
+
+1.  Install the netstat tools
+
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
+1.  Place monitoring.sh in /usr/local/bin/
+
+#!/bin/bash  
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 2. Add the rule that script would execute without sudo password:
 
 Open sudoers file:
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
 $ sudo visudo
-
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 Add this line:
 
 your_username ALL=(ALL) NOPASSWD: /usr/local/bin/monitoring.sh
@@ -376,16 +3710,235 @@ sudoers
 
 3. Reboot
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
 $ sudo reboot
-
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 4. Execute the script as su:
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
 $ sudo /usr/local/bin/monitoring.sh
-
+$ sudo crontab -u root -e
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 5. Open crontab and add the rule:
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
 $ sudo crontab -u root -e
-
+$ drm:vmw_host_log *ERROR* Failed to send host log message.
+```
 Add at end as follows: (*/10 means every 10 mins the script will show)
 
 */10 * * * * /usr/local/bin/monitoring.sh
@@ -394,8 +3947,81 @@ Add at end as follows: (*/10 means every 10 mins the script will show)
 
 1.  If you have this error when you reboot your VM, change the Display settings in your VirtualBox settings. See the solution  [here](https://unix.stackexchange.com/questions/502540/why-does-drmvmw-host-log-vmwgfx-error-failed-to-send-host-log-message-sh).
 
+```$ su -
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt install sudo
+$ su -  
+$ usermod -aG sudo your_username
+$ getent group sudo
+$ sudo visudo
+$ apt-get update -y  
+$ apt-get upgrade -y  
+$ apt-get install git -y
+$ git --version
+$ sudo apt-get install wget
+$ sudo apt-get install vim
+$ sudo apt-get install zsh  
+$ zsh --version  
+$ sh -c "$(wget [https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh](https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh) -O -)"
+$ sudo apt-get update  
+$ sudo apt install openssh-server
+$ sudo systemctl status ssh
+$ service ssh restart
+$ sudo nano _/etc/ssh/sshd_config_
+$ sudo grep Port /etc/ssh/sshd_config
+$ sudo service ssh restart
+$ apt-get install ufw
+$ sudo ufw enable
+$ sudo ufw status numbered
+$ sudo ufw allow ssh
+$ sudo ufw allow 4242
+$ sudo ufw status numbered  
+$ sudo ufw delete (that number, for example 5 or 6)
+$ sudo systemctl restart ssh
+$ sudo service sshd status
+$ ssh your_username@127.0.0.1 -p 4242
+$ exit
+$ sudo apt-get install libpam-pwquality
+$ sudo nano /etc/pam.d/common-password
+$ sudo nano /etc/login.defs
+$ sudo reboot
+$ sudo groupadd user42  
+$ sudo groupadd evaluating
+$ getent group
+$ cut -d: -f1 /etc/passwd
+$ sudo adduser _new_username_
+$ sudo usermod -aG user42 your_username  
+$ sudo usermod -aG evaluating your_new_username
+$ getent group user42  
+$ getent group evaluating
+$ groups
+$ chage -l your_new_username
+$ sudo nano /etc/sudoers
+$ hostnamectl
+$ hostnamectl set-hostname new_hostname
+$ sudo nano /etc/hosts
+$ sudo reboot
+$ sudo apt-get update -y  
+$ sudo apt-get install -y net-tools
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \  
+$'\n#CPU physical: '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \  
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \  
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \  
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \  
+$'\n#Last boot: ' `who -b | awk '{print $3" "$4" "$5}'` \  
+$'\n#LVM use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \  
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \  
+$'\n#User log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \  
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \  
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$ sudo visudo
+$ sudo reboot
+$ sudo /usr/local/bin/monitoring.sh
+$ sudo crontab -u root -e
 $ drm:vmw_host_log *ERROR* Failed to send host log message.
-
+```
 # 3. Defense
 
 1.  The basic difference of CentOS and Debian is shown as below.
