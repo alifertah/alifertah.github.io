@@ -6,16 +6,6 @@ category: school
 date: 30-03-2022
 ---
 
-42 network have one the most effective cursus in the world. the people behind it are smart people
-
-and know what they are doing.
-
-while the cursus can teach you about some important technical areas in computer science.
-
-you might not learn how to write a better code, and follow best practices.
-
-  
-
 ## Git the right way
 
 This tool is abused by many students, this is my second fav software ever
