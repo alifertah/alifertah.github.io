@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Born 2 Be Root</title>
+			<!-- link to main stylesheet -->
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<link rel="stylesheet" type="text/css" href="/css/main.css">
+			<link rel="stylesheet" type="text/css" href="/css/tango.css">
+			<link rel="preconnect" href="https://fonts.gstatic.com">
+			<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+			<link rel="icon" href="/large_alfertah.ico">
+		</head>
+		<body>
+			<div class="container">
+			
+			<head>
+	<title>Born 2 Be Root</title>
+	<!-- link to main stylesheet -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/css/tango.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+	<link rel="icon" href="../large_alfertah.ico">
+	<style>
+		div.active > svg#liked
+		{
+			display: block!important;;
+		}
+		div.active > svg#like
+		{
+			display: none!important;;
+		}
+	</style>
+</head>
+<div class="post-meta muted">
+	<a href="/">Home</a> | 
+	
+	<span>17 Oct 2022</span>
+	
+</div>
+<h1 class="title">Born 2 Be Root</h1>
+
+<article class="post">
+  <h1 id="born2beroot">Born2beroot</h1>
+
+<h2 id="42-school-project">42 school project</h2>
+
+<h1 id="1-installation">1. Installation</h1>
+
+<p>The installation guide is at the end of the article.</p>
+
+<h1 id="2-configuration">2. Configuration</h1>
+
+<h2 id="21-installing-sudo">2.1. Installing sudo</h2>
+
+<p>Login as root</p>
+
+<p>$ su -</p>
+
+<p>Install sudo</p>
+
+<p>$ apt-get update -y<br />
+$ apt-get upgrade -y<br />
+$ apt install sudo</p>
+
+<p>Adding user in sudo group</p>
+
+<p>$ su -<br />
+$ usermod -aG sudo your_username</p>
+
+<p>Check if user is in sudo group</p>
+
+<p>$ getent group sudo</p>
+
+<p>Give privilege as a su.</p>
+
+<p>Open sudoers file:</p>
+
+<p>$ sudo visudo</p>
+
+<p>Add this line in file:</p>
+
+<p>your_username    ALL=(ALL) ALL</p>
+
+<h2 id="22-installing-tools">2.2. Installing tools</h2>
+
+<p>Installing git</p>
+
+<p>$ apt-get update -y<br />
+$ apt-get upgrade -y<br />
+$ apt-get install git -y</p>
+
+<p>Check git version</p>
+
+<p>$ git –version</p>
+
+<p>Installing wget  <em>(wget is a free and open source tool for downloading files from web repositories.)</em></p>
+
+<p>$ sudo apt-get install wget</p>
+
+<p>Installing Vim</p>
+
+<p>$ sudo apt-get install vim</p>
+
+<p>Installing Oh my zsh (because it is easier to use)</p>
+
+<p>$ sudo apt-get install zsh<br />
+$ zsh –version<br />
+$ sh -c “$(wget <a href="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh">https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh</a> -O -)”</p>
+
+<h2 id="23-installing-ssh-and-configuring-ssh-service">2.3. Installing SSH and configuring SSH service</h2>
+
+<p>$ sudo apt-get update<br />
+$ sudo apt install openssh-server</p>
+
+<p>Check the SSH server status</p>
+
+<p>$ sudo systemctl status ssh</p>
+
+<p>Restart the SSH service</p>
+
+<p>$ service ssh restart</p>
+
+<p>Changing default port (22) to 4242</p>
+
+<p>$ sudo nano <em>/etc/ssh/sshd_config</em></p>
+
+<p>Edit the file change the line #Port22 to Port 4242</p>
+
+<p><em>Find thid line:</em></p>
+
+<p>#Port 22</p>
+
+<p><em>Change it like this:</em></p>
+
+<p>Port 4242</p>
+
+<p>Check if port settings got right</p>
+
+<p>$ sudo grep Port /etc/ssh/sshd_config</p>
+
+<p>Restart the SSH service</p>
+
+<p>$ sudo service ssh restart</p>
+
+<h2 id="24-installing-and-configuring-ufw-uncomplicated-firewall">2.4. Installing and configuring UFW (Uncomplicated Firewall)</h2>
+
+<p>Install UFW</p>
+
+<p>$ apt-get install ufw</p>
+
+<p>Enable</p>
+
+<p>$ sudo ufw enable</p>
+
+<p>Check the status</p>
+
+<p>$ sudo ufw status numbered</p>
+
+<p>Configure the rules</p>
+
+<p>$ sudo ufw allow ssh</p>
+
+<p>Configure the port rules</p>
+
+<p>$ sudo ufw allow 4242</p>
+
+<p>Delete the new rule: (This is for when you defend your Born2beroot)</p>
+
+<p>$ sudo ufw status numbered<br />
+$ sudo ufw delete (that number, for example 5 or 6)</p>
+
+<h2 id="25-connecting-ssh-server">2.5. Connecting SSH server</h2>
+
+<p>Add forward rule for VirtualBox</p>
+
+<ol>
+  <li>
+    <p>Go to VirtualBox-&gt; Choose the VM-&gt;Select Settings</p>
+  </li>
+  <li>
+    <p>Choose “Network”-&gt; “Adapter 1”-&gt;”Advanced”-&gt;”Port Forwarding”</p>
+  </li>
+</ol>
+
+<p><img src="https://miro.medium.com/max/671/1*rCj_FeuZ5Rm2abz48qhulg.png" alt="" /></p>
+
+<ol>
+  <li>Enter the values as shown:</li>
+</ol>
+
+<p><img src="https://miro.medium.com/max/700/1*61-KSUCFcerO1wPqBcYISg.png" alt="" /></p>
+
+<ol>
+  <li>Restart SSH server (go to the your VM machine)</li>
+</ol>
+
+<p>$ sudo systemctl restart ssh</p>
+
+<ol>
+  <li>Check ssh status:</li>
+</ol>
+
+<p>$ sudo service sshd status</p>
+
+<ol>
+  <li>From host side from iTerm2 or Terminal enter as shown below:</li>
+</ol>
+
+<p>$ ssh your_username@127.0.0.1 -p 4242</p>
+
+<ol>
+  <li>Quit the connection:</li>
+</ol>
+
+<p>$ exit</p>
+
+<h2 id="26-set-password-policy-source">2.6. Set password policy (<a href="https://ostechnix.com/how-to-set-password-policies-in-linux/">source</a>)</h2>
+
+<p>This setting enforces how many classes, i.e upper-case, lower-case, and other characters, should be in a password, also the length of the password.</p>
+
+<blockquote>
+  <p>“To set up a strong password policy, you have to comply with the following requirements:</p>
+
+  <p>• Your password must be at least 10 characters long. It must contain an uppercase letter and a number. Also, it must not contain more than 3 consecutive identical characters. 6 Born2beRoot</p>
+
+  <p>Your password has to expire every 30 days.</p>
+
+  <p>• The minimum number of days allowed before the modification of a password will be set to 2.</p>
+
+  <p>• The user has to receive a warning message 7 days before their password expires.</p>
+
+  <p>• The password must not include the name of the user.</p>
+
+  <p>• The following rule does not apply to the root password: The password must have at least 7 characters that are not part of the former password.</p>
+
+  <p>• Of course, your root password has to comply with this policy.”</p>
+</blockquote>
+
+<p>Installing password quality checking library (libpam-pwquality):</p>
+
+<p>$ sudo apt-get install libpam-pwquality</p>
+
+<p>Change the length</p>
+
+<p>$ sudo nano /etc/pam.d/common-password</p>
+
+<p>Find the following line:</p>
+
+<p>password [success=2 default=ignore] pam_unix.so obscure sha512</p>
+
+<p>And add an extra word: minlen=10 at the end.</p>
+
+<p>password [success=2 default=ignore] pam_unix.so obscure sha512 minlen=10</p>
+
+<p>To set at least one upper-case letter in the password, add a word ‘<strong>ucredit=-1</strong>’ at the end of the following line.</p>
+
+<p>Find this line:</p>
+
+<p>password    requisite         pam_pwquality.so retry=3</p>
+
+<p>Add these values (min lower-case 1 letter, min upper-case 1 letter, min digit 1, max same letter repetition 3, whether to check if the password contains the user name in some form (enabled if the value is not 0), the minimum number of characters that must be different from the old password=7, enforce_for_root: same policy for root users):</p>
+
+<p>password    requisite         pam_pwquality.so retry=3 <strong>lcredit =-1</strong> <strong>ucredit=-1 dcredit=-1 maxrepeat=3 usercheck=0 difok=7 enforce_for_root</strong></p>
+
+<p>It will look like this:</p>
+
+<p><img src="https://miro.medium.com/max/700/1*kEDIaQbWGJqO_JbDpPMZgw.png" alt="" /></p>
+
+<p>/etc/pam.d/common-password</p>
+
+<p>Password expiration:</p>
+
+<p>$ sudo nano /etc/login.defs</p>
+
+<p>Find this part</p>
+
+<p>PASS_MAX_DAYS 9999<br />
+PASS_MIN_DAYS 0<br />
+PASS_WARN_AGE 7</p>
+
+<p>Change it like this:(max 30 days, min number of days(2) allowed before the modification, receive a notification before expiration at least 7 days before)</p>
+
+<p>PASS_MAX_DAYS 30<br />
+PASS_MIN_DAYS 2<br />
+PASS_WARN_AGE 7</p>
+
+<p>Reboot the change affects:</p>
+
+<p>$ sudo reboot</p>
+
+<h2 id="27-create-group">2.7. Create group</h2>
+
+<p>$ sudo groupadd user42<br />
+$ sudo groupadd evaluating</p>
+
+<p>Check if group created:</p>
+
+<p>$ getent group</p>
+
+<h2 id="28-create-user-and-assign-into-group">2.8. Create user and assign into group</h2>
+
+<p>Check the all local users:</p>
+
+<p>$ cut -d: -f1 /etc/passwd</p>
+
+<p>Create the user</p>
+
+<p>$ sudo adduser <em>new_username</em></p>
+
+<p>Assign an user into “evaluating” group (This is for when you defend)</p>
+
+<p>$ sudo usermod -aG user42 your_username<br />
+$ sudo usermod -aG evaluating your_new_username</p>
+
+<p>Check if the user is in group</p>
+
+<p>$ getent group user42<br />
+$ getent group evaluating</p>
+
+<p>Check which groups user account belongs:</p>
+
+<p>$ groups</p>
+
+<p>Check if password rules working in users:</p>
+
+<p>$ chage -l your_new_username</p>
+
+<h2 id="29-configuring-sudoers-group">2.9. Configuring sudoers group</h2>
+
+<p>Go to file:</p>
+
+<p>$ sudo nano /etc/sudoers</p>
+
+<p>Add following for authentication using sudo has to be limited to 3 attempts in the event of an incorrect password:</p>
+
+<p>Defaults     secure_path=”…”<br />
+Defaults     passwd_tries=3</p>
+
+<p>For wrong password warning message, add:</p>
+
+<p>Defaults     badpass_message=”Password is wrong, please try again!”</p>
+
+<p>Each action log file has to be saved in the /var/log/sudo/ folder:</p>
+
+<p>(If there is no “/var/log/sudo” folder, create the sudo folder inside of “/var/log”)</p>
+
+<p>Defaults	logfile=”/var/log/sudo/sudo.log”<br />
+Defaults	log_input,log_output</p>
+
+<p>Require tty: (<em>Why use tty? If some non-root code is exploited (a PHP script, for example), the</em> <code class="language-plaintext highlighter-rouge">_requiretty_</code> <em>option means that the exploit code won’t be able to directly upgrade its privileges by running</em> <code class="language-plaintext highlighter-rouge">_sudo_</code><em>.</em>)</p>
+
+<p>Defaults        requiretty</p>
+
+<p>For security reasons too, the paths that can be used by sudo must be restricted. Example : /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin</p>
+
+<p>(It was already set there)</p>
+
+<p>Defaults   <em>secure_path=”</em>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin”</p>
+
+<p>Now my /etc/sudoers file looks like this</p>
+
+<p><img src="https://miro.medium.com/max/700/1*N4Ad-9k0vfvnWKNC5q6MjQ.png" alt="" /></p>
+
+<h2 id="210-change-hostname-this-is-for-when-you-defend">2.10. Change hostname (!!!This is for when you defend!!!)</h2>
+
+<p>Check current hostname</p>
+
+<p>$ hostnamectl</p>
+
+<p>Change the hostname</p>
+
+<p>$ hostnamectl set-hostname new_hostname</p>
+
+<p>Change /etc/hosts file</p>
+
+<p>$ sudo nano /etc/hosts</p>
+
+<p>Change old_hostname with new_hostname:</p>
+
+<p>127.0.0.1       localhost<br />
+127.0.0.1       new_hostname</p>
+
+<p>Reboot and check the change</p>
+
+<p>$ sudo reboot</p>
+
+<h2 id="211-crontab-configuration">2.11. Crontab configuration</h2>
+
+<blockquote>
+  <p>“A  <strong>crontab</strong>  file contains instructions for the cron(8) daemon in the following simplified manner: “run this command at this time on this date”</p>
+</blockquote>
+
+<ol>
+  <li>Install the netstat tools</li>
+</ol>
+
+<p>$ sudo apt-get update -y<br />
+$ sudo apt-get install -y net-tools</p>
+
+<ol>
+  <li>Place monitoring.sh in /usr/local/bin/</li>
+</ol>
+
+<p>#!/bin/bash<br />
+wall $’#Architecture: ‘ <code class="language-plaintext highlighter-rouge">hostnamectl | grep "Operating System" | cut -d ' ' -f5- </code> <code class="language-plaintext highlighter-rouge">awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'</code> <code class="language-plaintext highlighter-rouge">arch</code> \<br />
+$’\n#CPU physical: ‘<code class="language-plaintext highlighter-rouge">cat /proc/cpuinfo | grep processor | wc -l</code> \<br />
+$’\n#vCPU:  ‘<code class="language-plaintext highlighter-rouge">cat /proc/cpuinfo | grep processor | wc -l</code> \<br />
+$’\n’<code class="language-plaintext highlighter-rouge">free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'</code> \<br />
+$’\n’<code class="language-plaintext highlighter-rouge">df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'</code> \<br />
+$’\n’<code class="language-plaintext highlighter-rouge">top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'</code> \<br />
+$’\n#Last boot: ‘ <code class="language-plaintext highlighter-rouge">who -b | awk '{print $3" "$4" "$5}'</code> \<br />
+$’\n#LVM use: ‘ <code class="language-plaintext highlighter-rouge">lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'</code> \<br />
+$’\n#Connection TCP:’ <code class="language-plaintext highlighter-rouge">netstat -an | grep ESTABLISHED |  wc -l</code> \<br />
+$’\n#User log: ‘ <code class="language-plaintext highlighter-rouge">who | cut -d " " -f 1 | sort -u | wc -l</code> \<br />
+$’\nNetwork: IP ‘ <code class="language-plaintext highlighter-rouge">hostname -I</code>”(“<code class="language-plaintext highlighter-rouge">ip a | grep link/ether | awk '{print $2}'</code>”)” \<br />
+$’\n#Sudo:  ‘ <code class="language-plaintext highlighter-rouge">grep 'sudo ' /var/log/auth.log | wc -l</code></p>
+
+<ol>
+  <li>Add the rule that script would execute without sudo password:</li>
+</ol>
+
+<p>Open sudoers file:</p>
+
+<p>$ sudo visudo</p>
+
+<p>Add this line:</p>
+
+<p>your_username ALL=(ALL) NOPASSWD: /usr/local/bin/monitoring.sh</p>
+
+<p>sudoers will look like:</p>
+
+<p><img src="https://miro.medium.com/max/700/1*l-7LtAqCon1gRkV3dY3qiQ.png" alt="" /></p>
+
+<p>sudoers</p>
+
+<ol>
+  <li>Reboot</li>
+</ol>
+
+<p>$ sudo reboot</p>
+
+<ol>
+  <li>Execute the script as su:</li>
+</ol>
+
+<p>$ sudo /usr/local/bin/monitoring.sh</p>
+
+<ol>
+  <li>Open crontab and add the rule:</li>
+</ol>
+
+<p>$ sudo crontab -u root -e</p>
+
+<p>Add at end as follows: (*/10 means every 10 mins the script will show)</p>
+
+<p>*/10 * * * * /usr/local/bin/monitoring.sh</p>
+
+<p>#Tips</p>
+
+<ol>
+  <li>If you have this error when you reboot your VM, change the Display settings in your VirtualBox settings. See the solution  <a href="https://unix.stackexchange.com/questions/502540/why-does-drmvmw-host-log-vmwgfx-error-failed-to-send-host-log-message-sh">here</a>.</li>
+</ol>
+
+<p>$ drm:vmw_host_log <em>ERROR</em> Failed to send host log message.</p>
+
+<h1 id="3-defense">3. Defense</h1>
+
+<ol>
+  <li>The basic difference of CentOS and Debian is shown as below.</li>
+</ol>
+
+<p><img src="https://miro.medium.com/max/482/1*EUhkzOMoiT_KEF3j402O6g.png" alt="" /></p>
+
+<p>It is from  <a href="https://1gbits.com/blog/debian-vs-centos-comparison/">here</a></p>
+
+<ol>
+  <li>What is the difference between aptitude and apt?</li>
+</ol>
+
+<p>“Apart from main difference being that  <strong>Aptitude</strong>  is a high-level package manager while  <strong>APT</strong>  is lower-level package manager which can be used by other higher-level package managers, other main highlights that separate these two package managers are:</p>
+
+<ol>
+  <li><strong>Aptitude</strong>  is vaster in functionality than  <strong>apt-get</strong>  and integrates functionalities of apt-get and its other variants including  <strong>apt-mark</strong>  and  <strong>apt-cache</strong>.</li>
+</ol>
+
+<p>While  <strong>apt-get</strong>  handles all the package installation, up-gradation, system-upgradation, purging package, resolving dependencies etc., Aptitude handles lot more stuff than apt, including functionalities of  <strong>apt-mark</strong>  and  <strong>apt-cache</strong>  i.e. searching for a package in list of installed packages, marking a package to be automatically or manually installed, holding a package making it unavailable for up-gradation and so on.” (<a href="https://www.tecmint.com/difference-between-apt-and-aptitude/">source</a>)</p>
+
+<p><img src="https://miro.medium.com/max/700/1*vRgjWvlyZsTHhO3_4Qsvlg.png" alt="" /></p>
+
+<p><a href="https://www.oreilly.com/library/view/implementing-devops-with/9781787120532/8dfaa49e-7885-48f1-8d71-a3535c90aff8.xhtml">source</a></p>
+
+<ol>
+  <li>Difference between SELinux and APPArmor?</li>
+</ol>
+
+<p>“These security systems provide tools to isolate applications from each other and in turn isolate an attacker from the rest of the system when an application is compromised.</p>
+
+<p><strong>SELinux</strong>  rule sets are incredibly complex but with this complexity you have more control over how processes are isolated. Generating these policies  <a href="http://magazine.redhat.com/2007/08/21/a-step-by-step-guide-to-building-a-new-selinux-policy-module/">can be automated</a>. A strike against this security system is that its very difficult to independently verify.</p>
+
+<p><strong>AppArmor</strong>  (and SMACK) is very straight forward. The profiles can be hand written by humans, or generated using  <code class="language-plaintext highlighter-rouge">aa-logprof</code>. AppArmor uses path based control, making the system more transparent so it can be independently verified.” (<a href="https://security.stackexchange.com/questions/29378/comparison-between-apparmor-and-selinux">source</a>)</p>
+
+<p><img src="https://miro.medium.com/max/700/1*wJLXOmrC5eJg_kLZakN9Fg.png" alt="" /></p>
+
+<p><a href="https://www.slideshare.net/albertspijkers/apparmor-overview-23108025">source</a></p>
+
+<h1 id="1-installation-1">1. Installation</h1>
+
+<p>If you already have installed the OS, you can skip this part.</p>
+
+<ol>
+  <li>
+    <ol>
+      <li>Get the Debian installer image from  <a href="https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/">here</a>.</li>
+    </ol>
+  </li>
+</ol>
+
+<p><em>ISO The</em> <code class="language-plaintext highlighter-rouge">_netinst_</code> <em>CD is a small CD image that contains just the core Debian installer code and a small core set of text-mode programs (known as “standard” in Debian).</em></p>
+
+<p>I chose the standard debian-10.10.0-amd64-netinst.</p>
+
+<p><a href="https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/"></a></p>
+
+<h2 id="index-of-debian-cdcurrentamd64iso-cd">Index of /debian-cd/current/amd64/iso-cd</h2>
+
+<h3 id="these-are-files-containing-the-installer-and-other-software-for-the-debian-gnulinux-operating-system-the-files-in">These are files containing the installer and other software for the Debian GNU/Linux operating system. The files in…</h3>
+
+<p>cdimage.debian.org</p>
+
+<p>Put the image in sgoinfre (/sgoinfre/goinfre/Perso/your_login) if you are installing at school.</p>
+
+<ol>
+  <li>
+    <p>Choose “Save link as” and open the folder as above (sgoinfre…).</p>
+  </li>
+  <li>
+    <ol>
+      <li>Installing the Debian 10.</li>
+    </ol>
+  </li>
+</ol>
+
+<p><img src="https://miro.medium.com/max/700/1*tkjZEbnHKqPGN24HQw_kRA.png" alt="" /></p>
+
+<p>Choose ”New”</p>
+
+<p><img src="https://miro.medium.com/max/678/1*WyFDl98AZfft999XCKD6kA.png" alt="" /></p>
+
+<p>If you are installing at school environment, choose “sgoinfre”</p>
+
+<p><img src="https://miro.medium.com/max/675/1*SoVNIKT340ARlLvQ7RuwDA.png" alt="" /></p>
+
+<p>Select all as default</p>
+
+<p><img src="https://miro.medium.com/max/674/1*PzVboJLyLTs7qJmgbdoBYA.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/694/1*6_D9jIyOW0jE3a6vF_UzXg.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/697/1*HagpR-UD0HWCb7zRTeSQXQ.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*rYdYJbPswCVCUa5pwKcRZA.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*V2wtat5wJyBjSEoXatkG0A.png" alt="" /></p>
+
+<p>Choose “Settings”-&gt;”Storage”</p>
+
+<p><img src="https://miro.medium.com/max/646/1*je75kGWjXl0M6PlqEzHgoA.png" alt="" /></p>
+
+<p>Click on Optical Drive’s far right blue small box</p>
+
+<p><img src="https://miro.medium.com/max/700/1*VDy31g0tePnUOuJ1cZQsxQ.png" alt="" /></p>
+
+<p>Choose a ISO image that you already have download</p>
+
+<p><img src="https://miro.medium.com/max/700/1*FOldzHFaQ2JS_phe6z6T4g.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*Evj7Z2EOq102A1zUVgUnQg.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*Yg53c1-01g4VzTqhcVEEcA.png" alt="" /></p>
+
+<p>Click “Start” green arrow to start the VM</p>
+
+<p><img src="https://miro.medium.com/max/638/1*-tV-M-4g6MH8h6pWJ27bCg.png" alt="" /></p>
+
+<p>Choose “Install”</p>
+
+<p><img src="https://miro.medium.com/max/700/1*xeb8quQ-ccd5X51d8ToZRw.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*WixFq3GJF9OjeH-zTBTN7Q.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*zKUk6R9tls_jiyY81ue8kA.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*r0fzgkzXOjK2DfsBCh7wEQ.png" alt="" /></p>
+
+<p>Enter the hostname as your login+42</p>
+
+<p><img src="https://miro.medium.com/max/700/1*81XjZBZg2bbNXunuxgnFPQ.png" alt="" /></p>
+
+<p>Leave it as default</p>
+
+<p><img src="https://miro.medium.com/max/700/1*ft498oj7syh4zVjI48U_tw.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*rhJWnMKN0TPBZwqRey9OeQ.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*fJFibR-WkevpF3fLwyZiag.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*z4BtcP_BS8UmUzbZNgcCqA.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*2i7svoURih_UIlRJ87rj5w.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*CsSx-ALmn8mMxvWicsNVAQ.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*BTLz5sT6noL_SVQ7eq3u-A.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*r5zFPA7R_9BtIqwyOpCCVw.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*NHdo3JbApICz0Co2epPLFA.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*KHmnCUJUWhf1minIdHNS4g.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*B0QL-gX7rZW5-RJyTD1uWw.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*xE1owXa0ttpvcioaEwnutA.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*SUFMu-qy3rBwIe9B0Bq3kg.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*yfXpHyGD37OGAOX7qs1Avw.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*Mfb1YHt4K3pZJ12TF2dXAw.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*vqV-bN3zDMqTBAKz_u548w.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*bLnFC6MebhW1-YZlI2n9_A.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*e08pS8shLNmhZuFUrmuBwA.png" alt="" /></p>
+
+<p>Leave it blank</p>
+
+<p><img src="https://miro.medium.com/max/700/1*1I6fHG3MHuovrarqj9PNnA.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*lGsuAQEwT0WBhb4kdUMp9g.png" alt="" /></p>
+
+<p>Deselect “SSH server”, “standard system utilities”. We’ll install it later manually.(To deselect, just hit SPACE key)</p>
+
+<p><img src="https://miro.medium.com/max/700/1*b2qXPye_kX8EudSvbO4yww.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*s3S7D1c1t98nowFfDvJfgg.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*riuXLYYgESxdq-lpkivFXQ.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/651/1*aLyQeWzQ1etZHbQVQepjBA.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/628/1*frU-8y-PY8aUFo70AGApHw.png" alt="" /></p>
+
+<p><img src="https://miro.medium.com/max/700/1*FlHR1WFfu-Hwmspd2WXNGA.png" alt="" /></p>
+
+<p>Enter your encryption password</p>
+
+<p><img src="https://miro.medium.com/max/700/1*5ynsRmWt6HteSbOWYPxeZw.png" alt="" /></p>
+
+<p>login as your_username</p>
+
+<p><img src="https://miro.medium.com/max/700/1*Y_bimgjp7w49TR4hek3n3g.png" alt="" /></p>
+
+<p>Run “lsblk” to see the partition</p>
+
+</article>
+
+<p style="display: inline-block;">
+	By : 
+	
+		Ali Fertah
+	
+	<div style="cursor: pointer; float: right;" onclick="changestatus(this)">
+		<svg id="like" style="color: #2d9dff" xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="bi bi-heart" viewBox="0 0 16 16"> <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" fill="#2d9dff"></path> </svg>
+		<svg id="liked" style="color: #2d9dff;display:none;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="bi bi-heart" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" fill="#2d9dff"/>
+</svg>
+	</div>
+</p>
+
+<div class="tags">
+	<p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+	<path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"></path>
+	<line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+
+		
+			<span class="tag">| programming </span>
+		
+			<span class="tag">| IT </span>
+		
+	</p>
+	<p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6A2 2 0 004 4v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+
+		<span >2180 word</span>
+	</p>
+	<p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+
+		<span>17 Oct 2022</span>
+	</p>
+</div>
+
+<script>
+	function changestatus($this)
+	{
+		if ($this.classList.contains('active'))
+			$this.classList.remove("active")
+		else
+			$this.classList.add("active")
+	}
+</script>
+			
+			</div><!-- /.container -->
+			<footer class="container flex">
+				<div>2022 © Ali Fertah</div>
+				<div class="spacer"></div>
+				
+				<div id="social-media flex">
+				    
+					<a href="https://www.github.com/alifertah" title="github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+				    
+					<a href="https://twitter.com/alifertah42" title="twitter"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+				    
+					<a href="https://instagram.com/alifertah" title="instagram"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+width="24" height="24"
+viewBox="0 0 172 172"
+style=" fill:#000000;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#2e9dff"><path d="M57.33333,21.5c-19.7585,0 -35.83333,16.07483 -35.83333,35.83333v57.33333c0,19.7585 16.07483,35.83333 35.83333,35.83333h57.33333c19.7585,0 35.83333,-16.07483 35.83333,-35.83333v-57.33333c0,-19.7585 -16.07483,-35.83333 -35.83333,-35.83333zM57.33333,35.83333h57.33333c11.85367,0 21.5,9.64633 21.5,21.5v57.33333c0,11.85367 -9.64633,21.5 -21.5,21.5h-57.33333c-11.85367,0 -21.5,-9.64633 -21.5,-21.5v-57.33333c0,-11.85367 9.64633,-21.5 21.5,-21.5zM121.83333,43c-3.95804,0 -7.16667,3.20863 -7.16667,7.16667c0,3.95804 3.20863,7.16667 7.16667,7.16667c3.95804,0 7.16667,-3.20863 7.16667,-7.16667c0,-3.95804 -3.20863,-7.16667 -7.16667,-7.16667zM86,50.16667c-19.7585,0 -35.83333,16.07483 -35.83333,35.83333c0,19.7585 16.07483,35.83333 35.83333,35.83333c19.7585,0 35.83333,-16.07483 35.83333,-35.83333c0,-19.7585 -16.07483,-35.83333 -35.83333,-35.83333zM86,64.5c11.85367,0 21.5,9.64633 21.5,21.5c0,11.85367 -9.64633,21.5 -21.5,21.5c-11.85367,0 -21.5,-9.64633 -21.5,-21.5c0,-11.85367 9.64633,-21.5 21.5,-21.5z"></path></g><path d="" fill="none"></path></g></g></svg></a>
+				    
+				</div>
+				
+
+			</footer>
+		</body>
+	</html>

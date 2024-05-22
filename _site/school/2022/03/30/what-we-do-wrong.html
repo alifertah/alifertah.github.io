@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title>what we do wrong</title>
+			<!-- link to main stylesheet -->
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<link rel="stylesheet" type="text/css" href="/css/main.css">
+			<link rel="stylesheet" type="text/css" href="/css/tango.css">
+			<link rel="preconnect" href="https://fonts.gstatic.com">
+			<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+			<link rel="icon" href="/large_alfertah.ico">
+		</head>
+		<body>
+			<div class="container">
+			
+			<head>
+	<title>what we do wrong</title>
+	<!-- link to main stylesheet -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/css/tango.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+	<link rel="icon" href="../large_alfertah.ico">
+	<style>
+		div.active > svg#liked
+		{
+			display: block!important;;
+		}
+		div.active > svg#like
+		{
+			display: none!important;;
+		}
+	</style>
+</head>
+<div class="post-meta muted">
+	<a href="/">Home</a> | 
+	
+	<a href="/category/school">school</a> | 
+	
+	<span>30 Mar 2022</span>
+	
+</div>
+<h1 class="title">what we do wrong</h1>
+
+<article class="post">
+  <h2 id="git-the-right-way">Git the right way</h2>
+
+<p>This tool is abused by many students, this is my second fav software ever</p>
+
+<p>and I feel bad when the most important tool in devpack used</p>
+
+<p>in arbitrary way. here is some common points I noticed And I took personally:</p>
+
+<h3 id="git-add-">git add .</h3>
+
+<p>It’s easier to add files to stage area using this approach. just stage everything .DStore and all other useless garbage files.</p>
+
+<p><strong>NOOOOOOOOOOOOO Please</strong>, just add files that are neccessary for your project. you might be to lazy to stage them one by one,</p>
+
+<p>just use Vscode or to be fast use <a href="https://github.com/tpope/vim-fugitive">Fugitive plugin</a> in vim.</p>
+
+<p>With this you can make sure that you only have neccessary files in your repo, and give you a better understanding for</p>
+
+<p>changes you made so you can have a well-written commit message.</p>
+
+<h3 id="git-status-n-git-commit--m-whatever">git status \n git commit -m “whatever”</h3>
+
+<p>I can’t call this ‘abuse’ but it’s much better to just use <code class="language-plaintext highlighter-rouge">git commit</code> and this will show you a useful status in your</p>
+
+<p>favorite editor(vim), write down a useful message, save&amp;quit and your commit will be done.</p>
+
+<p>isn’t it much easier to write a commit message while you can see files that you changed ?</p>
+
+<p><strong>Example:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nv">$ </span>git commit
+
+</code></pre></div></div>
+
+<p>this will open vim where you can write your commit msg:</p>
+
+<ul>
+  <li>
+    <p>:q -&gt; quit to abort commit</p>
+  </li>
+  <li>
+    <p>:wq -&gt; save&amp;quit to save commit</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my useful commit message here
+
+# Please enter the commit message for your changes. Lines starting
+
+# with '#' will be ignored, and an empty message aborts the commit.
+
+#
+
+# On branch main
+
+#
+
+# Initial commit
+
+#
+
+# Changes to be committed:
+
+# new file: file1
+
+# new file: file2
+
+</code></pre></div></div>
+
+<h3 id="git-clone--mv-ur-files">git clone &amp;&amp; mv ur files</h3>
+
+<p>When they finished thier project. most students realise that they didn’t link it with vogsphere.</p>
+
+<p>They do what I call a smart move, just clone it and move file from project to cloned repo.</p>
+
+<p>Guess what stupid? git remote is much easier.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nv">$ </span><span class="nb">cd </span>myproject
+
+<span class="nv">$ </span>git remote add intra <span class="o">[</span><span class="nb">link </span>to vogsphere repo]
+
+<span class="nv">$ </span>git push <span class="nt">-u</span> intra master
+
+</code></pre></div></div>
+
+<p>Now you can look for evalutors.</p>
+
+<h3 id="gitignore">gitignore</h3>
+
+<p>This file is freaking useful to avoid staging useless files.</p>
+
+<p>Files you might want to put in <code class="language-plaintext highlighter-rouge">.gitignore</code> file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+.gitignore
+
+*.o
+
+build/
+
+libft.a # or any binary file you have in your project
+
+</code></pre></div></div>
+
+<h2 id="makefile-the-same-everywhere">Makefile (the same everywhere)</h2>
+
+<p>Take makefile from prevouis project change your source files and Header file. run it, and magically it works.</p>
+
+<p>Hell noooooo, makefile has a lot to learn.</p>
+
+<h3 id="no-source-files-in-makefile">No source files in makefile</h3>
+
+<p>You should never put source files in your makefile, why? because you will never need them. your are just risking deleting them</p>
+
+<p>with a stupid mistake that we as developer like to do.</p>
+
+<p>so instead of this</p>
+
+<div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nv">SRC</span> <span class="o">=</span> main.c lkiks.c
+
+<span class="nv">OBJ</span> <span class="o">=</span> <span class="p">$(</span>SRC:.c<span class="o">=</span>.o<span class="p">)</span>
+
+</code></pre></div></div>
+
+<p>what about this smart genius idea:</p>
+
+<div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nv">OBJ</span> <span class="o">=</span> main.o lkiks.o
+
+</code></pre></div></div>
+
+<p><a href="https://github.com/torvalds/linux/blob/master/fs/fuse/Makefile">Example from linux kernel</a>.</p>
+
+<h3 id="object-file-in-root-directory">Object file? In root directory???</h3>
+
+<p>I hate to see object files in the root directory, running <code class="language-plaintext highlighter-rouge">make fclean</code> everytime you are looking</p>
+
+<p>for a file, this elimante the role of makefile in first place(relink).</p>
+
+<p><strong>Solution:</strong></p>
+
+<p>I am sure that this is the best way but at least I think it works almost perfectly for small projects.</p>
+
+<p>Your object files should be inside a folder called <code class="language-plaintext highlighter-rouge">build</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+build
+
+├── checker
+
+│ ├── checker.o
+
+│ └── exec.o
+
+├── common
+
+│ ├── stack
+
+│ │ ├── instructions.o
+
+│ │ ├── op.o
+
+│ │ ├── swap.o
+
+│ │ ├── swipedown.o
+
+│ │ └── swipeup.o
+
+│ ├── str.o
+
+│ └── utils.o
+
+└── pushswap
+
+├── main.o
+
+├── opti.o
+
+├── sort_5.o
+
+├── stack_sort.o
+
+└── utils
+
+└── misc.o
+
+checker
+
+├── checker.c
+
+├── exec.c
+
+└── inc
+
+└── checker.h
+
+common
+
+├── stack
+
+│ ├── instructions.c
+
+│ ├── op.c
+
+│ ├── swap.c
+
+│ ├── swipedown.c
+
+│ └── swipeup.c
+
+├── str.c
+
+└── utils.c
+
+pushswap
+
+├── inc
+
+│ └── stack.h
+
+├── main.c
+
+├── opti.c
+
+├── sort_5.c
+
+├── stack_sort.c
+
+└── utils
+
+└── misc.c
+
+</code></pre></div></div>
+
+<p><strong>Example:</strong></p>
+
+<p>This <a href="https://gitlab.com/abellaismail/pushswap/-/blob/main/Makefile">my Makefile</a> for pushswap project;</p>
+
+<p>And it’s a great example for reusing component in your project too.</p>
+
+<h2 id="learn-shell">Learn shell</h2>
+
+<p>In the first 2 days in the pool you learned about shell. but most of student don’t apply what they learned</p>
+
+<p>to do repeatable task.</p>
+
+<p>Ohmyzsh comes with great start point for you, but I always recommand to have your own configuration cuz why not.</p>
+
+<p>here is <a href="https://github.com/abellaismail7/.dotfiles/blob/main/.config/zsh/.zshrc">my minimal configuration</a></p>
+
+<p>if you need inspiration.</p>
+
+<h3 id="example">Example</h3>
+
+<p>Here is some aliases you might need:</p>
+
+<p>open <code class="language-plaintext highlighter-rouge">~/.zshrc</code> and add this lines</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nb">alias </span><span class="nv">g</span><span class="o">=</span><span class="s1">'git'</span>
+
+<span class="nb">alias </span><span class="nv">ga</span><span class="o">=</span><span class="s1">'git add'</span>
+
+<span class="nb">alias </span><span class="nv">gs</span><span class="o">=</span><span class="s1">'git status'</span>
+
+<span class="nb">alias </span><span class="nv">gc</span><span class="o">=</span><span class="s1">'git checkout'</span>
+
+<span class="nb">alias </span><span class="nv">gco</span><span class="o">=</span><span class="s1">'git commit'</span>
+
+<span class="nb">alias </span><span class="nv">gp</span><span class="o">=</span><span class="s1">'git push'</span>
+
+  
+
+<span class="nb">alias </span><span class="nv">v</span><span class="o">=</span><span class="s1">'vim'</span>
+
+  
+
+<span class="nb">alias</span> <span class="nt">--</span> <span class="nv">l</span><span class="o">=</span><span class="s1">'ls -lah'</span>
+
+<span class="nb">alias</span> <span class="nt">--</span> <span class="nv">ll</span><span class="o">=</span><span class="s1">'ls -lAh'</span>
+
+<span class="nb">alias</span> <span class="nt">--</span> <span class="nb">ls</span><span class="o">=</span><span class="s1">'ls --color=auto'</span>
+
+<span class="nb">alias</span> <span class="nt">--</span> <span class="nv">md</span><span class="o">=</span><span class="s1">'mkdir -p'</span>
+
+  
+
+<span class="nb">alias</span> <span class="nt">--</span> -<span class="o">=</span><span class="s1">'cd -'</span>
+
+<span class="nb">alias</span> <span class="nt">--</span> ..<span class="o">=</span><span class="s1">'cd ..'</span>
+
+<span class="nb">alias</span> <span class="nt">--</span> ...<span class="o">=</span><span class="s1">'cd ../..'</span>
+
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nv">$ </span><span class="nb">touch </span>file1 file2 <span class="c"># instead of</span>
+
+<span class="nv">$ </span>ga file1 file2 <span class="c"># instead of git add</span>
+
+<span class="nv">$ </span>gs <span class="c"># instead of git status</span>
+
+On branch main
+
+  
+
+No commits yet
+
+  
+
+Changes to be committed:
+
+<span class="o">(</span>use <span class="s2">"git rm --cached &lt;file&gt;..."</span> to unstage<span class="o">)</span>
+
+new file: file1
+
+new file: file2
+
+  
+
+<span class="nv">$ </span>gc <span class="nt">-m</span> <span class="s2">""</span>
+
+</code></pre></div></div>
+
+<h2 id="even-c">Even C?</h2>
+
+<p>While C is the core of the cursus there some common problems I and students made and still.</p>
+
+<h3 id="learn-c-not-norm">Learn C not norm</h3>
+
+<p>In general I like the norm. but most of new student never heard of a lot of keywords/functions in c</p>
+
+<p>You might not know that there is scanf to read from stdin. You might not know about for loops.</p>
+
+<p>Some students never heard of allowed features in c like struct/enums/union …;</p>
+
+<p>Investing some time learning the practical C will help you write tests faster saving you some time.</p>
+
+<h3 id="never-use-write-directly-or-waste-your-time">Never use write directly (or waste your time)</h3>
+
+<p>Prevent students from using stdio functions is just a genuis idea.</p>
+
+<p>while we have functions like open, read and write that are intract directly with system …</p>
+
+<p>but using write directly is a bad idea cuz it’s error-prone, we developers like to make dump mistakes.</p>
+
+<p>for me I like to use ` ft_putstrfd(int fd, char *s)`.</p>
+
+<h3 id="programming-is-like-mariage-you-are-always-wrong">Programming is like mariage, you are always wrong.</h3>
+
+<p>You can insult iMac and c as you can, but most of the time you doing something wrong.</p>
+
+<p>we are using c89 compiled using gcc which is one of the most mature projects.</p>
+
+<p>written by genuis people so It’s more likely you doing it wrong.</p>
+
+<h3 id="once-it-works-dont-touch-it-mindset">Once it works don’t touch it mindset.</h3>
+
+<p>What a pure bad mindset to have as developer.</p>
+
+<p>refactoring(the process of making code better) is one of the most important skills as software eng.</p>
+
+<p>here is a qoute from kent beck</p>
+
+<blockquote>
+  <p>Make it work, make it right, make it fast.</p>
+</blockquote>
+
+<p>– Kent Beck</p>
+
+<p>I highly recommand two books:</p>
+
+<ol>
+  <li>
+    <p><a href="https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882">clean code, uncle bob</a> : This will teach you how to write an understable, readable code.</p>
+  </li>
+  <li>
+    <p><a href="https://martinfowler.com/books/refactoring.html">Refactoring, martin fowler</a> : This will teach you how to rewrite part of you code to be better and faster.</p>
+  </li>
+</ol>
+
+<h2 id="in-the-end">In The end</h2>
+
+<p>This is what I think. If you have a different opinion we can discuss it in my twitter account (link below)</p>
+
+<p>If you want to add anything to this feel free to pull request in <a href="https://github.com/alifertah/alifertah.github.io">this repo</a>.</p>
+
+</article>
+
+<p style="display: inline-block;">
+	By : 
+	
+		Ali Fertah
+	
+	<div style="cursor: pointer; float: right;" onclick="changestatus(this)">
+		<svg id="like" style="color: #2d9dff" xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="bi bi-heart" viewBox="0 0 16 16"> <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" fill="#2d9dff"></path> </svg>
+		<svg id="liked" style="color: #2d9dff;display:none;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="bi bi-heart" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" fill="#2d9dff"/>
+</svg>
+	</div>
+</p>
+
+<div class="tags">
+	<p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+	<path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"></path>
+	<line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+
+		
+			<span class="tag">| git </span>
+		
+	</p>
+	<p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6A2 2 0 004 4v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+
+		<span >1362 word</span>
+	</p>
+	<p>
+		<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+
+		<span>30 Mar 2022</span>
+	</p>
+</div>
+
+<script>
+	function changestatus($this)
+	{
+		if ($this.classList.contains('active'))
+			$this.classList.remove("active")
+		else
+			$this.classList.add("active")
+	}
+</script>
+			
+			</div><!-- /.container -->
+			<footer class="container flex">
+				<div>2022 © Ali Fertah</div>
+				<div class="spacer"></div>
+				
+				<div id="social-media flex">
+				    
+					<a href="https://www.github.com/alifertah" title="github"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+				    
+					<a href="https://twitter.com/alifertah42" title="twitter"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+				    
+					<a href="https://instagram.com/alifertah" title="instagram"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+width="24" height="24"
+viewBox="0 0 172 172"
+style=" fill:#000000;"><g transform=""><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#2e9dff"><path d="M57.33333,21.5c-19.7585,0 -35.83333,16.07483 -35.83333,35.83333v57.33333c0,19.7585 16.07483,35.83333 35.83333,35.83333h57.33333c19.7585,0 35.83333,-16.07483 35.83333,-35.83333v-57.33333c0,-19.7585 -16.07483,-35.83333 -35.83333,-35.83333zM57.33333,35.83333h57.33333c11.85367,0 21.5,9.64633 21.5,21.5v57.33333c0,11.85367 -9.64633,21.5 -21.5,21.5h-57.33333c-11.85367,0 -21.5,-9.64633 -21.5,-21.5v-57.33333c0,-11.85367 9.64633,-21.5 21.5,-21.5zM121.83333,43c-3.95804,0 -7.16667,3.20863 -7.16667,7.16667c0,3.95804 3.20863,7.16667 7.16667,7.16667c3.95804,0 7.16667,-3.20863 7.16667,-7.16667c0,-3.95804 -3.20863,-7.16667 -7.16667,-7.16667zM86,50.16667c-19.7585,0 -35.83333,16.07483 -35.83333,35.83333c0,19.7585 16.07483,35.83333 35.83333,35.83333c19.7585,0 35.83333,-16.07483 35.83333,-35.83333c0,-19.7585 -16.07483,-35.83333 -35.83333,-35.83333zM86,64.5c11.85367,0 21.5,9.64633 21.5,21.5c0,11.85367 -9.64633,21.5 -21.5,21.5c-11.85367,0 -21.5,-9.64633 -21.5,-21.5c0,-11.85367 9.64633,-21.5 21.5,-21.5z"></path></g><path d="" fill="none"></path></g></g></svg></a>
+				    
+				</div>
+				
+
+			</footer>
+		</body>
+	</html>
